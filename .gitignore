@@ -1,0 +1,3 @@
+*-novcs-*
+data/*
+!data/README.md
