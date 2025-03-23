@@ -27,5 +27,26 @@ For now, these are the instructions. They work, but might be more effort than it
      > **NOTE** NYT puzzles are password-protected **and** rate-limited:
        - Don't try to pull several NYT puzzles in a row without a pause of a few seconds inbetween.
        - An easy way to do this is to pull another puzzle along with the NYT puzzles (e.g. "uni nyt" "2025-03-21 2025-03-22 2025-03-23").
+       - If you exceed their rate limit, the account will be locked out for about a day. You don't have to do anything except wait to regain access.
 
        > **TO-DO**: add logic to ensure minimum delay of a few seconds between NYT puzzle pulls, so the user doesn't have to think about it.
+
+   - examples:
+
+     ```bash
+     # produce 6 crosswords: 2 puzzles x 3 dates
+     # produces a single *.html file that prints on 6 pages total
+     # (3 sheets of paper if printing double-sided)
+     ./large-print-crosswords.sh "uni atl" "2025-02-17 2025-02-18 2025-02-19"
+
+     # produce 6 crosswords: 1 puzzle x 6 dates -- generate the dates from script.
+     # the date generation understands month boundaries, leap years etc
+     ./large-print-crosswords.sh "uni" "$(./date-sequence.sh 2025-02-27 6)"
+
+     # fetch nyt puzzles with user name and password **bundled with another non-nyt puzzle**
+     # ⚠️ CAUTION! we sprinkle in fetches of the "universal crossword"
+     # to avoid running afould of new york times rate limits. See notes above.
+         export NYT_USER="" # put your username/email address here
+         export NYT_PASS="" # put your password here; these creds are sent to nyt only.
+     ./large-print-crosswords.sh "nyt uni" "$(./date-sequence.sh 2025-02-27 3)"
+     ```
