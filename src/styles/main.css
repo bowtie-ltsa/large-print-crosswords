@@ -1,0 +1,63 @@
+@media print {
+    .no-print {
+        display: none;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+    /* get the black "blocks" to print as black, without requiring user to change browser settings */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+.puzzle {
+    break-inside: avoid;
+    width: 8in;
+    margin-bottom: 50px;
+}
+
+TABLE.crossword {
+    border-collapse: collapse;
+}
+
+TABLE.crossword TD {
+    border: 1px solid #000;
+    text-align: left;
+    font-size: 1.5em;
+    width: 35px;
+    height: 35px;
+}
+
+TD.block {
+    background-color: #000;
+}
+
+TD sup {
+    color: #606060;
+    font-size: smaller;
+    font-weight: 100;
+    display: block;
+    margin-top: -20px;
+    margin-left: -1px;
+}
+
+.clues-main-div {
+    column-count: 3;
+    column-gap: 20px;
+}
+
+.direction {
+    font-weight: bold;
+    color: red;
+}
+
+.num {
+    font-weight: bold;
+}
+
+.num:after {
+    content: ".";
+}

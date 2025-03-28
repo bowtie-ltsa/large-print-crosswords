@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Large Print Crosswords</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/fetchPuzzles.js"></script>
+    <script src="scripts/processPuzzles.js"></script>
+</head>
+<body>
+    <header class="noprint">
+        <h1>Welcome to Large Print Crosswords</h1>
+        <p>
+            Large-Print-Crosswords (LPC) fetches crossword puzzles from the interwebs and formats them for
+            printing in large fonts while still fitting them onto a single printed page.
+            <ul>
+                <li>Produces HTML so you can just use your browser to do the printing.</li>
+                <li>Can fetch several puzzles with one click, so you can print several pages in one go.</li>
+                <li>Currently limited to just one puzzle: The Universal Crossword.</li>
+                <li>Currently making assumptions about page size.</li>
+            </ul>
+        </p>
+        <p>
+            Instructions:
+            <ol>
+                <li>Select a date for the puzzle you want to print.</li>
+                <li>Click the "Fetch Puzzles" button.</li>
+                <li>Wait for the puzzles to be fetched and formatted.</li>
+                <li>Print the puzzles using your browser's print functionality.</li>
+            </ol>
+        </p>
+    </header>
+    <main class="noprint">
+        <form onsubmit="fetchPuzzles(event)">
+            <label for="puzzle-date">Select a date:</label>
+            <input type="date" id="puzzle-date" name="puzzle-date" value="2025-02-22" required>
+            <button type="submit">Fetch Puzzles</button>
+        </form>
+        <p>Please see <a href="https://github.com/bowtie-ltsa/large-print-crosswords">https://github.com/bowtie-ltsa/large-print-crosswords</a> for important &copy; copyright and licensing information about the project. Note that individual crossword puzzles fetched from the interwebs are the property of those authors; when you ask this page to fetch one of those puzzles, we think you are acting within the scope of acceptable use for that puzzle, but this is not legal advice. If you are a puzzle author or owner, please feel free to contact the project by starting a <a href="https://github.com/bowtie-ltsa/large-print-crosswords/discussions">discussion</a> or filing an <a href="https://github.com/bowtie-ltsa/large-print-crosswords/issues">issue</a>. Thanks!</p>
+    </main>
+
+    <!-- template used for each puzzle -->
+    <div id="puzzle" class="puzzle" style="display: none;">
+        <div class="clues-main-div" id="clues-main-div">
+        </div>
+        <div class="grid-and-gutter" id="grid-and-gutter">
+            <table style="width: 100%;">
+                <tr>
+                    <td id="crossword-td">
+                        <div class="crossword-div" id="crossword-div">
+                        </div>
+                    </td>
+                    <td style="vertical-align: top;">
+                        <div class="clue-gutter-div" id="clue-gutter-div" style="vertical-align: top;">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="title" id="title">
+            </div>
+        </div>
+    </div>
+
+    <!-- container to hold each puzzle fetched -->
+    <section id="all-puzzles">
+    </section>
+</body>
+</html>
