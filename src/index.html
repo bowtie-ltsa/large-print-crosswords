@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Large Print Crosswords</title>
     <link rel="stylesheet" href="styles/main.css">
-    <script src="scripts/fetchPuzzles.js"></script>
-    <script src="scripts/processPuzzles.js"></script>
+    <link rel="shortcut icon" href="#">
+
+    <script type="module">
+        import fetchPuzzles from './scripts/fetchPuzzles.js'
+        window.fetchPuzzles = fetchPuzzles
+    </script>
 </head>
 <body>
     <header class="noprint">
@@ -32,7 +36,7 @@
         </p>
     </header>
     <main class="noprint">
-        <form onsubmit="fetchPuzzles(event)">
+        <form onsubmit="try { fetchPuzzles(event); } catch (ex) { console.error(`failed to fetch:`, ex) } return false">
             <label for="puzzle-date">Select a date:</label>
             <input type="date" id="puzzle-date" name="puzzle-date" value="2025-02-22" required>
             <button type="submit">Fetch Puzzles</button>
